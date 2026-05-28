@@ -23,42 +23,42 @@ export default function MyScores() {
   const best = scores.length ? Math.max(...scores.map(s => s.score)) : 0
   const avg = scores.length ? Math.round(scores.reduce((a, s) => a + s.score, 0) / scores.length) : 0
 
-  if (loading) return <div className="text-gray-400">Loading...</div>
+  if (loading) return <div className="text-caliber-dim">Loading...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">My Scores</h1>
+      <h1 className="text-2xl font-bold text-caliber-steel mb-6">My Scores</h1>
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
           { label: 'Total Sessions', value: scores.length },
           { label: 'Best Score', value: best },
           { label: 'Average Score', value: avg },
         ].map(s => (
-          <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-orange-500">{s.value}</p>
-            <p className="text-gray-400 text-sm mt-1">{s.label}</p>
+          <div key={s.label} className="bg-caliber-surface border border-caliber-border rounded-xl p-4 text-center">
+            <p className="text-2xl font-bold text-caliber-gold">{s.value}</p>
+            <p className="text-caliber-dim text-sm mt-1">{s.label}</p>
           </div>
         ))}
       </div>
       {scores.length === 0 ? (
-        <p className="text-center text-gray-500 py-8">No scores recorded yet.</p>
+        <p className="text-center text-caliber-muted py-8">No scores recorded yet.</p>
       ) : (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+        <div className="bg-caliber-surface border border-caliber-border rounded-xl overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-800 text-gray-400 uppercase text-xs">
+            <thead className="bg-caliber-dark text-caliber-dim uppercase text-xs">
               <tr>{['Date', 'Weapon', 'Round #', 'Distance', 'Target', 'Score'].map(h => (
                 <th key={h} className="px-4 py-3 text-left">{h}</th>
               ))}</tr>
             </thead>
-            <tbody className="divide-y divide-gray-800">
+            <tbody className="divide-y divide-caliber-border">
               {scores.map(s => (
-                <tr key={s.id} className="hover:bg-gray-800/50 transition-colors">
-                  <td className="px-4 py-3 text-gray-300">{s.sessions ? format(new Date(s.sessions.date), 'MMM dd') : '—'}</td>
-                  <td className="px-4 py-3 text-gray-300">{s.sessions?.weapon_type ?? '—'}</td>
-                  <td className="px-4 py-3 text-gray-300">#{s.round_number}</td>
-                  <td className="px-4 py-3 text-gray-300">{s.distance_m}m</td>
-                  <td className="px-4 py-3 text-gray-300">{s.target_type}</td>
-                  <td className="px-4 py-3 font-bold text-orange-400">{s.score}</td>
+                <tr key={s.id} className="hover:bg-caliber-elevated/50 transition-colors">
+                  <td className="px-4 py-3 text-caliber-steel/80">{s.sessions ? format(new Date(s.sessions.date), 'MMM dd') : '—'}</td>
+                  <td className="px-4 py-3 text-caliber-steel/80">{s.sessions?.weapon_type ?? '—'}</td>
+                  <td className="px-4 py-3 text-caliber-steel/80">#{s.round_number}</td>
+                  <td className="px-4 py-3 text-caliber-steel/80">{s.distance_m}m</td>
+                  <td className="px-4 py-3 text-caliber-steel/80">{s.target_type}</td>
+                  <td className="px-4 py-3 font-bold text-caliber-gold">{s.score}</td>
                 </tr>
               ))}
             </tbody>

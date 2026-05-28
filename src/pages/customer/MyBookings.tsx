@@ -27,20 +27,20 @@ export default function MyBookings() {
     setBookings(prev => prev.map(b => b.id === id ? { ...b, status: 'cancelled' } : b))
   }
 
-  if (loading) return <div className="text-gray-400">Loading...</div>
+  if (loading) return <div className="text-caliber-dim">Loading...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">My Bookings</h1>
+      <h1 className="text-2xl font-bold text-caliber-steel mb-6">My Bookings</h1>
       {bookings.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">No bookings yet. <a href="/book" className="text-orange-400 hover:underline">Book a lane →</a></div>
+        <div className="text-center py-12 text-caliber-muted">No bookings yet. <a href="/book" className="text-caliber-gold hover:underline">Book a lane →</a></div>
       ) : (
         <div className="space-y-3">
           {bookings.map(b => (
-            <div key={b.id} className="bg-gray-900 border border-gray-800 rounded-xl p-4 flex items-center justify-between">
+            <div key={b.id} className="bg-caliber-surface border border-caliber-border rounded-xl p-4 flex items-center justify-between">
               <div>
-                <p className="text-white font-medium">{b.lanes?.name} <span className="text-gray-500 text-sm">({b.lanes?.type})</span></p>
-                <p className="text-gray-400 text-sm mt-0.5">{format(new Date(b.date), 'MMM dd, yyyy')} · {b.start_time} – {b.end_time}</p>
+                <p className="text-caliber-steel font-medium">{b.lanes?.name} <span className="text-caliber-muted text-sm">({b.lanes?.type})</span></p>
+                <p className="text-caliber-dim text-sm mt-0.5">{format(new Date(b.date), 'MMM dd, yyyy')} · {b.start_time} – {b.end_time}</p>
               </div>
               <div className="flex items-center gap-3">
                 <span className={`text-xs font-semibold px-2 py-1 rounded-full border ${statusColors[b.status]}`}>

@@ -28,24 +28,24 @@ export default function MyOrders() {
       .then(({ data }) => { if (data) setOrders(data as Order[]); setLoading(false) })
   }, [user])
 
-  if (loading) return <div className="text-gray-400">Loading orders...</div>
+  if (loading) return <div className="text-caliber-dim">Loading orders...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">My Orders</h1>
+      <h1 className="text-2xl font-bold text-caliber-steel mb-6">My Orders</h1>
       {orders.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 mb-4">No orders yet.</p>
-          <Link to="/shop" className="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm">Visit Shop</Link>
+          <p className="text-caliber-muted mb-4">No orders yet.</p>
+          <Link to="/shop" className="px-4 py-2 bg-caliber-gold text-caliber-dark rounded-lg text-sm">Visit Shop</Link>
         </div>
       ) : (
         <div className="space-y-4">
           {orders.map(order => (
-            <div key={order.id} className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+            <div key={order.id} className="bg-caliber-surface border border-caliber-border rounded-xl p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <p className="text-gray-400 text-xs">Order · {format(new Date(order.created_at), 'MMM dd, yyyy HH:mm')}</p>
-                  <p className="text-white font-bold text-lg mt-0.5">${order.total.toFixed(2)}</p>
+                  <p className="text-caliber-dim text-xs">Order · {format(new Date(order.created_at), 'MMM dd, yyyy HH:mm')}</p>
+                  <p className="text-caliber-steel font-bold text-lg mt-0.5">${order.total.toFixed(2)}</p>
                   {order.discount_pct > 0 && (
                     <p className="text-green-400 text-xs">Saved ${order.discount_amount.toFixed(2)} ({order.discount_pct}% off)</p>
                   )}
@@ -56,7 +56,7 @@ export default function MyOrders() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {order.order_items?.map(item => (
-                  <span key={item.id} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">
+                  <span key={item.id} className="text-xs bg-caliber-elevated text-caliber-steel/80 px-2 py-1 rounded">
                     {item.products?.name} ×{item.quantity}
                   </span>
                 ))}

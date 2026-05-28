@@ -40,22 +40,22 @@ export default function BookLane() {
 
   return (
     <div className="max-w-xl">
-      <h1 className="text-2xl font-bold text-white mb-6">Book a Lane</h1>
+      <h1 className="text-2xl font-bold text-caliber-steel mb-6">Book a Lane</h1>
       {success && (
         <div className="mb-4 bg-green-900/30 border border-green-700 text-green-300 rounded-lg px-4 py-3 text-sm">
           ✅ Booking submitted! Awaiting confirmation.
           <button onClick={() => setSuccess(false)} className="ml-2 underline">Book another</button>
         </div>
       )}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+      <div className="bg-caliber-surface border border-caliber-border rounded-xl p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Select Lane</label>
+            <label className="block text-sm font-medium text-caliber-steel/80 mb-1">Select Lane</label>
             <select
               value={selectedLane}
               onChange={e => setSelectedLane(e.target.value)}
               required
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-orange-500"
+              className="w-full bg-caliber-elevated border border-caliber-muted rounded-lg px-4 py-2.5 text-caliber-steel focus:outline-none focus:border-caliber-gold"
             >
               <option value="">-- Choose a lane --</option>
               {lanes.map(lane => (
@@ -66,32 +66,32 @@ export default function BookLane() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Date</label>
+            <label className="block text-sm font-medium text-caliber-steel/80 mb-1">Date</label>
             <input type="date" value={date} onChange={e => setDate(e.target.value)} required
               min={new Date().toISOString().split('T')[0]}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-orange-500" />
+              className="w-full bg-caliber-elevated border border-caliber-muted rounded-lg px-4 py-2.5 text-caliber-steel focus:outline-none focus:border-caliber-gold" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Start Time</label>
+              <label className="block text-sm font-medium text-caliber-steel/80 mb-1">Start Time</label>
               <input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} required
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-orange-500" />
+                className="w-full bg-caliber-elevated border border-caliber-muted rounded-lg px-4 py-2.5 text-caliber-steel focus:outline-none focus:border-caliber-gold" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">End Time</label>
+              <label className="block text-sm font-medium text-caliber-steel/80 mb-1">End Time</label>
               <input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} required
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-orange-500" />
+                className="w-full bg-caliber-elevated border border-caliber-muted rounded-lg px-4 py-2.5 text-caliber-steel focus:outline-none focus:border-caliber-gold" />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Notes (optional)</label>
+            <label className="block text-sm font-medium text-caliber-steel/80 mb-1">Notes (optional)</label>
             <textarea value={notes} onChange={e => setNotes(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-orange-500"
+              className="w-full bg-caliber-elevated border border-caliber-muted rounded-lg px-4 py-2.5 text-caliber-steel focus:outline-none focus:border-caliber-gold"
               rows={2} placeholder="Any special requirements..." />
           </div>
           {error && <p className="text-red-400 text-sm">{error}</p>}
           <button type="submit" disabled={loading}
-            className="w-full bg-orange-600 hover:bg-orange-500 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg transition-colors">
+            className="w-full bg-caliber-gold hover:bg-caliber-gold-light disabled:opacity-50 text-caliber-dark font-semibold py-2.5 rounded-lg transition-colors">
             {loading ? 'Submitting...' : 'Submit Booking'}
           </button>
         </form>

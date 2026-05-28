@@ -36,28 +36,28 @@ export default function AdminBookings() {
     setBookings(prev => prev.map(b => b.id === id ? { ...b, status } : b))
   }
 
-  if (loading) return <div className="text-gray-400">Loading...</div>
+  if (loading) return <div className="text-caliber-dim">Loading...</div>
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">All Bookings</h1>
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <h1 className="text-2xl font-bold text-caliber-steel mb-6">All Bookings</h1>
+      <div className="bg-caliber-surface border border-caliber-border rounded-xl overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-800 text-gray-400 uppercase text-xs">
+          <thead className="bg-caliber-dark text-caliber-dim uppercase text-xs">
             <tr>{['Member', 'Lane', 'Date', 'Time', 'Status', 'Actions'].map(h => (
               <th key={h} className="px-4 py-3 text-left">{h}</th>
             ))}</tr>
           </thead>
-          <tbody className="divide-y divide-gray-800">
+          <tbody className="divide-y divide-caliber-border">
             {bookings.map(b => (
-              <tr key={b.id} className="hover:bg-gray-800/50">
+              <tr key={b.id} className="hover:bg-caliber-elevated/50">
                 <td className="px-4 py-3">
-                  <p className="text-white font-medium">{b.profiles?.full_name}</p>
-                  <p className="text-gray-500 text-xs">{b.profiles?.phone}</p>
+                  <p className="text-caliber-steel font-medium">{b.profiles?.full_name}</p>
+                  <p className="text-caliber-muted text-xs">{b.profiles?.phone}</p>
                 </td>
-                <td className="px-4 py-3 text-gray-300">{b.lanes?.name} <span className="text-gray-500">({b.lanes?.type})</span></td>
-                <td className="px-4 py-3 text-gray-300">{format(new Date(b.date), 'MMM dd, yyyy')}</td>
-                <td className="px-4 py-3 text-gray-300">{b.start_time} – {b.end_time}</td>
+                <td className="px-4 py-3 text-caliber-steel/80">{b.lanes?.name} <span className="text-caliber-muted">({b.lanes?.type})</span></td>
+                <td className="px-4 py-3 text-caliber-steel/80">{format(new Date(b.date), 'MMM dd, yyyy')}</td>
+                <td className="px-4 py-3 text-caliber-steel/80">{b.start_time} – {b.end_time}</td>
                 <td className="px-4 py-3">
                   <span className={`text-xs font-semibold px-2 py-1 rounded-full border ${statusColors[b.status]}`}>
                     {b.status.toUpperCase()}

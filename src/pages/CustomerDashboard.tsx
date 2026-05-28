@@ -37,22 +37,22 @@ export default function CustomerDashboard() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Welcome back, {profile?.full_name?.split(' ')[0]} 👋</h1>
-        <p className="text-gray-400 mt-1 text-sm">Your shooting range dashboard</p>
+        <h1 className="text-2xl font-bold text-caliber-steel">Welcome back, {profile?.full_name?.split(' ')[0]} 👋</h1>
+        <p className="text-caliber-dim mt-1 text-sm">LOCK · AIM · FIRE</p>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
-          { label: 'Active Bookings', value: stats.bookings, icon: '📅', color: 'border-orange-600' },
+          { label: 'Active Bookings', value: stats.bookings, icon: '📅', color: 'border-caliber-gold' },
           { label: 'Loyalty Points', value: loyalty?.total_points ?? 0, icon: loyalty?.badge_emoji ?? '🥉', color: 'border-yellow-600' },
           { label: 'Your Rank', value: myRank ? `#${myRank}` : '—', icon: '🏆', color: 'border-green-600' },
           { label: 'Shop Discount', value: `${loyalty?.discount_pct ?? 5}%`, icon: '🏷️', color: 'border-pink-600' },
         ].map((card, i) => (
-          <div key={i} className={`bg-gray-900 border ${card.color} border-l-4 rounded-xl p-4`}>
+          <div key={i} className={`bg-caliber-surface border ${card.color} border-l-4 rounded-xl p-4`}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-xs">{card.label}</p>
-                <p className="text-2xl font-bold text-white mt-1">{typeof card.value === 'number' ? card.value.toLocaleString() : card.value}</p>
+                <p className="text-caliber-dim text-xs">{card.label}</p>
+                <p className="text-2xl font-bold text-caliber-steel mt-1">{typeof card.value === 'number' ? card.value.toLocaleString() : card.value}</p>
               </div>
               <span className="text-2xl">{card.icon}</span>
             </div>
@@ -62,50 +62,50 @@ export default function CustomerDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {loyalty && (
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+          <div className="bg-caliber-surface border border-caliber-border rounded-xl p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-white font-bold">Your Loyalty Status</h2>
-              <Link to="/loyalty" className="text-xs text-orange-400 hover:text-orange-300">Details →</Link>
+              <h2 className="text-caliber-steel font-bold">Your Loyalty Status</h2>
+              <Link to="/loyalty" className="text-xs text-caliber-gold hover:text-caliber-gold-light">Details →</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
               <span className="text-3xl">{loyalty.badge_emoji}</span>
               <div>
-                <p className="text-white font-bold text-lg" style={{ color: tierColor }}>{loyalty.tier_name} Member</p>
-                <p className="text-gray-400 text-sm">{loyalty.total_points.toLocaleString()} pts · {loyalty.discount_pct}% off shop</p>
+                <p className="text-caliber-steel font-bold text-lg" style={{ color: tierColor }}>{loyalty.tier_name} Member</p>
+                <p className="text-caliber-dim text-sm">{loyalty.total_points.toLocaleString()} pts · {loyalty.discount_pct}% off shop</p>
               </div>
             </div>
             {loyalty.next_tier_name && (
               <>
-                <div className="h-2 bg-gray-800 rounded-full overflow-hidden mb-1">
+                <div className="h-2 bg-caliber-elevated rounded-full overflow-hidden mb-1">
                   <div className="h-full rounded-full" style={{ width: `${Math.min(100, (loyalty.total_points / (loyalty.next_tier_min ?? 1)) * 100)}%`, backgroundColor: tierColor }} />
                 </div>
-                <p className="text-gray-500 text-xs">{loyalty.points_to_next} pts to {loyalty.next_tier_name}</p>
+                <p className="text-caliber-muted text-xs">{loyalty.points_to_next} pts to {loyalty.next_tier_name}</p>
               </>
             )}
           </div>
         )}
 
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+        <div className="bg-caliber-surface border border-caliber-border rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white font-bold">🏆 Top Shooters</h2>
-            <Link to="/leaderboard" className="text-xs text-orange-400 hover:text-orange-300">Full →</Link>
+            <h2 className="text-caliber-steel font-bold">🏆 Top Shooters</h2>
+            <Link to="/leaderboard" className="text-xs text-caliber-gold hover:text-caliber-gold-light">Full →</Link>
           </div>
           <div className="space-y-2">
             {topShooters.map((entry, i) => (
-              <div key={entry.user_id} className={`flex items-center justify-between py-1.5 px-2 rounded-lg ${entry.user_id === profile?.id ? 'bg-orange-900/20' : ''}`}>
+              <div key={entry.user_id} className={`flex items-center justify-between py-1.5 px-2 rounded-lg ${entry.user_id === profile?.id ? 'bg-caliber-gold/10' : ''}`}>
                 <div className="flex items-center gap-2">
                   <span className="text-sm">{['🥇','🥈','🥉','4️⃣','5️⃣'][i]}</span>
-                  <span className="text-sm text-white">{entry.full_name}{entry.user_id === profile?.id && <span className="text-orange-400 text-xs ml-1">(you)</span>}</span>
+                  <span className="text-sm text-caliber-steel">{entry.full_name}{entry.user_id === profile?.id && <span className="text-caliber-gold text-xs ml-1">(you)</span>}</span>
                 </div>
-                <span className="text-orange-400 font-bold text-sm">{entry.total_score.toLocaleString()}</span>
+                <span className="text-caliber-gold font-bold text-sm">{entry.total_score.toLocaleString()}</span>
               </div>
             ))}
-            {topShooters.length === 0 && <p className="text-gray-500 text-sm">No scores yet</p>}
+            {topShooters.length === 0 && <p className="text-caliber-muted text-sm">No scores yet</p>}
           </div>
         </div>
 
-        <div className="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-5">
-          <h2 className="text-white font-bold mb-4">Quick Actions</h2>
+        <div className="lg:col-span-2 bg-caliber-surface border border-caliber-border rounded-xl p-5">
+          <h2 className="text-caliber-steel font-bold mb-4">Quick Actions</h2>
           <div className="flex flex-wrap gap-2">
             {[
               { to: '/book', label: '📅 Book a Lane', primary: true },
@@ -117,7 +117,7 @@ export default function CustomerDashboard() {
               { to: '/my-orders', label: '📦 My Orders', primary: false },
             ].map(a => (
               <Link key={a.to} to={a.to}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${a.primary ? 'bg-orange-600 hover:bg-orange-500 text-white' : 'bg-gray-800 hover:bg-gray-700 text-gray-300'}`}>
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${a.primary ? 'bg-caliber-gold hover:bg-caliber-gold-light text-caliber-dark' : 'bg-caliber-elevated hover:bg-caliber-muted text-caliber-steel/80'}`}>
                 {a.label}
               </Link>
             ))}
